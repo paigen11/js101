@@ -1,0 +1,19 @@
+#main1{
+	display: block;
+	margin: auto;
+	text-align: center;
+
+}
+
+#main2{
+	display: block;
+	padding-right: 10px;
+	text-align: center;
+	margin-top: 50px;
+
+}
+
+#button{
+	margin: auto;
+	padding-top: 30px;
+} 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fight the Dragon</title>
+
+	<link rel="stylesheet" type="text/css" href="dragon.css">
+</head>
+<body>
+
+<div id="game">
+	<div id="main1">	
+		<h1>Fight the Dragon</h1>
+		<div id="dragon">
+			<img name="scary_dragon" src="dice/dragon.png">
+		</div>
+		
+		<p>Do you choose to...</p>
+		<input type="button" onclick="fightDragon()" value="Fight">
+		<input type="button" onclick="fleeDragon()" value="Flee">
+	</div>	
+
+	<div id="main2">
+		<h2>Dragon's Roll</h2>
+		<img name="die3" src="dice/d1.gif">
+		<img name="die4" src="dice/d1.gif">
+
+		<div class="health">
+			<h3>HP:</h3>
+			<div id="dragonHP">20</div>
+		</div>			
+
+		<h2>Your Roll</h2>
+		<img name="die1" src="dice/d1.gif">
+		<img name="die2" src="dice/d1.gif">
+
+		<div class="health">
+			<h3>HP:</h3>
+			<div id="yourHP">20</div>
+		</div>	
+
+		<div id="button">
+			<input type="button" onclick="combat();" value="Fight!">
+		</div>	
+	</div>	
+</div>
+
+<script type="text/javascript">
+
+
+
+
+	// document.getElementById('die1');
+	function fightDragon(){
+		alert("You are brave! To defeat the dragon you must roll a 9 or higher on the die, otherwise you will be burnt to a crisp. Let's roll the dice!");
+	}
+
+	function fleeDragon(){
+		alert("Scaredy cat! You're fleeing?");
+		document.getElementById("dragon").innerHTML = '<img src="dice/loser.png" />';
+		
+	}
+	var damageTakenUser = 0;
+	var damageTakenDragon = 0;
+	var yourHP = 20;
+	var dragonHP = 20;
+
+	function rollDice(){
+
+		var randomDie1 = Math.floor(Math.random() * 6)+1
+		var randomDie2 = Math.floor(Math.random() * 6)+1
+
+		// console.log(randomDie1);
+		// console.log(randomDie2);
+		// console.dir(document.images);
+
+		document.images.die1.src = 'dice/d' + randomDie1 + '.gif';
+		document.images.die2.src = 'dice/d' + randomDie2 + '.gif';
+
+		damageTakenUser = Number(randomDie1) + Number(randomDie2);
+
+		dragonHP -= damageTakenUser;
+
+
+	function rollDiceDragon(){
+
+		var randomDie1 = Math.floor(Math.random() * 6)+1
+		var randomDie2 = Math.floor(Math.random() * 6)+1
+
+		// console.log(randomDie1);
+		// console.log(randomDie2);
+		// console.dir(document.images);
+
+		document.images.die3.src = 'dice/d' + randomDie1 + '.gif';
+		document.images.die4.src = 'dice/d' + randomDie2 + '.gif';
+
+		damageTakenDragon = randomDie1 + randomDie2;
+
+		yourHP -= damageTakenDragon;
+	}
+
+	function health() {
+		document.getElementById("yourHP").innerHTML = yourHP.toString();
+		document.getElementById("dragonHP").innerHTML = dragonHP.toString();
+	}
+
+	function combat() {
+		rollDice();
+		rollDiceDragon();
+		health();
+	}
+
+</script>
+
+</body>
+</html>

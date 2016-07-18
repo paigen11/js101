@@ -1,0 +1,46 @@
+<script type="text/javascript">
+
+// Given a number between 0 and 6 representing the days of the week, print "Go to work." if it's a work day and "Sleep in." if it's a weekend day.
+	var day = new Date();
+	var weekDay = day.getDay();
+
+	if((weekDay =>1) || (weekDay <= 6)){
+		console.log("Go to work");
+	}else{
+		console.log("Sleep in");
+	}
+
+
+	// Given a month number, between 1 and 12, and a year, print the number of days in that month - accounting for leap years.
+
+	var date = new Date();
+	var month = date.getMonth();
+	if(month == 4 || month == 6 || month == 9 || month == 11){
+		console.log("This month has 30 days");
+	}else if(month == 2){
+		console.log("This month has 28 days");
+	}else{
+		console.log("This month has 31 days");
+	}
+
+	// Given the amount of a bill as a number, and a level of service - which can be "good", "fair", or "bad", print the total bill with the tip included. The amount of tip given for each level of service is defined by:
+
+	// "good" -> 20%
+	// "fail" -> 15%
+	// "bad"  -> 10%
+	var good = .2;
+	var fair = .15;
+	var bad = .1;
+	var bill = Number(prompt("Enter your meal total"));
+	var service1 = prompt("How was your service?", "good, fair, bad");
+	var service2 = service1.toLowerCase();
+	var tip = 0;
+	if(tip === "good"){
+		console.log("Your total is $" + ((bill * good) + bill));
+	}else if(tip === "fair"){
+		console.log("Your bill is $" + ((bill * fair) + bill));
+	}else{
+		console.log("Your bill is $" + ((bill * bad) + bill));
+	}
+	
+</script>

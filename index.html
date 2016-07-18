@@ -1,0 +1,250 @@
+<script type="text/javascript">
+
+// A property has no ()
+// A method/function has ()
+
+// PRINTING STUFF
+	alert("Hello, World"); // you can also include window.alert or window.console.log, etc. if you want because these happen in the browser window, but it's not necessary
+	console.log("Hello, World");
+	console.dir("Hello, World"); // this will give you the most information the browser has about something - dom info, all js methods, events, etc. (good for formatting things like HTML elements you need to know js stuff about)
+	document.write("Hello, World"); // this is the source code 
+
+// VARIABLES
+// string - letters, numbers and other stuff you can make with your keyboard. Strings are for PEOPLE. Must be inside of either '' or "". Sublime codes them yellow. A string is a 'data type'. 
+	var fullName = "Paige Niedringhaus";
+	fullName = "Jake H";
+	fullName = 'Paige "The Dude" Niedringhaus';
+	// fullName = "Paige "The Dude" Niedringhaus"; can't do double "" quotations - JS doesn't interpret them correctly and throws an error
+	// Escaping stuff
+	fullName = "Paige \"The Dude\" Niedringhaus"; // this makes JS skip the double ""
+	document.write(fullName);
+// variables will equal whatever it last equalled (so "Jake H" instead of "Paige N")
+
+// NUMBERS
+// integers - number with no decimal point
+	var myAge = 27;
+	var myAgeAsAString = "37";
+
+// OPERATORS
+
+	// in numbers, a + is a plus sign. In strings a + is a concatenate sign
+	var onMyBirthday = myAge + 1; // it's recommended you use camel case in JS because this is where the world's headed 
+	onMyBirthday = myAgeAsAString + 1; 371 // if there's any string in an operator filled function - the whole thing will end up as a string
+	// snake case = var on_my_birthday
+	// bad case = var on-my-birthday
+
+	//Adding a string or a number to an object returns [object Object]
+	var obj = {}
+	var huh = myAgeAsAString + obj;
+	console.log(huh); // [object Object] happens when you try to add a string to an object
+
+	var doubleMyAge = myAge + myAge;
+	doubleMyAge = myAge * 2;
+	var halfMyAge = myAge / 2;
+
+// FLOAT - a number WITH a decimal point
+	var floatNumber = 3.14;
+	console.log(typeof(floatNumber))  // the console will return 'number' or 'string' for words or 'object' for objects	or 'boolean' for true/false booleans
+	var makeMeAnInteger = parseInt(3.14);
+	console.log(makeMeAnInteger); // the console delivers '3' - it just hacks off the decimal point - almost never use parseInt - just use math.floor()
+	console.log(.2 + .1); // this equals .3000000000000004 (or so) - this could be an interview type of question - it's a 'gotcha'
+
+// BOOLEAN - true or false. 1 or 0.
+	var theTruth = true;  // 1
+	var theLie = false; // 0
+	console.log(theTruth);
+	var theTruth = 1 // this equals 1 the number not 'true' as a boolean
+
+// Back to operators (Rob's bad), +, - , *, /
+	// Modulus - returns remainder after dividing two numbers
+	var amIEven = 10 % 2; // returns 0
+
+	// More Math Options ...
+	var addOneToMe = 1;
+	addOneToMe++; //2
+	addOneToMe--; //0
+
+	// Prefix 
+	// If you want your operation to happen ASAP, put the ++ at the beginning
+	// Postfix
+	// If you want it to happen last, put it at the end
+	console.log(myAge++); // returns 27
+	console.log(++myAge); // returns 28
+
+	// Order of Operations
+	// * and / always come first, then left to right 
+	// + and - come second, then left to right
+	// () overrides all, still (just like math class)
+
+	// Concatenate a string and an integer into something useful...
+	var aGreatLine = "The meaning of life is " + (40 + 2);
+
+//PROMPTS - takes 2 arguments, the message at the top of the dialogue box, and the 2nd thing is the default answer
+	var userName = prompt("What is your name?", "Arthur, King of the Britons");
+	console.log(userName);
+
+	// We'll rarely us them because JS prompts are annoying!
+	// And they are limited to the page. As soon as the user leaves, the info is lost.
+	// HTML forms can send lots of data via many methods to other pages
+
+// CONDITIONALS
+	var classSize = 15;	
+	var question = "How big is your coding class?";
+	var response = prompt(question, classSize);
+	
+	// two ways to write the same thing - the triple === is a boolean ensuring the value and data type are the same, and the == makes sure the value is the same
+	
+	// response is a string so it won't work
+	console.log(typeof(response));
+	if(response === 15){
+		console.log("You are in the July class");
+	}
+
+	if(response == 15){
+		console.log("You are in the July class");
+	}
+
+	// if((response == 15) && (typeof(response) == typeof(15))){
+	// }
+
+	if(response === 15){
+		console.log("Five rows of three?");
+	}else{
+		console.log("I don't know what class you're in, but it's not the July class");
+	}
+
+	var simpleMathQuestion = prompt("What is 2 + 2?");
+	var answerAsANumber = Number(simpleMathQuestion);
+	console.log(typeof(answerAsANumber));
+	if(answerAsANumber === 4){ //check if they got the right answer
+		console.log("correct");
+	}else if(isNaN(answerAsANumber)){
+		console.log("You must enter a number");
+	}else{
+		console.log("Where did you go to school? It's 4...")
+	}
+
+	var lotteryWinningNumber = 5;
+	var yourLotteryNumber = 129374873459074;
+	if(yourLotteryNumber !== lotteryWinningNumber){
+		console.log("Sorry, no one ever wins the lottery");
+	}
+
+// Random
+	var randomNumber = Math.random();
+	console.log(randomNumber);
+	var aNumberBetweenOneAndOneHundred = Math.round(randomNumber * 100);
+	console.log(aNumberBetweenOneAndOneHundred);
+
+//Practice
+// Make a prompt box that asks the user for a number between 1-10.
+var pickANumber = prompt("Choose a number between 1 and 10", "number");
+var userInputAsANumber = Number(pickANumber);
+// Generate a random number between 1-10.
+var randomNumber = Math.floor(Math.random() * 10) + 1;
+// If they match, congrat the user.
+if(userInputAsANumber === randomNumber){
+		console.log("Great guess! You're right.");
+	}else if((userInputAsANumber == randomNumber +-2) || (userInputAsANumber == randomNumber +-1)){
+// If they dont, console the user and tell them what it was
+		console.log("Close, but no cigar. The number was " + randomNumber);
+	}else if(!isNaN(userInputAsANumber)){
+// - if they are wrong, but within 2 of the number, tell them they were close and what the number was.		
+		console.log("You weren't even in the ballpark. The number was " + randomNumber);
+	}else{
+		console.log("Must enter a number");
+	}
+// - if they are wrong but not within 2, tell them they weren't close and what the number was
+ //Lastly, make sure they entered a number
+
+ // ARRAY
+	 var student1 = "Shirlette";
+	 var student2 = "Jacksonious";
+	 var student3 = "JT";
+	 var student4 = "Summer";
+
+	 var students = [];
+	 students = ["Shirlette", "Jacksonious", "JT", "Summer"];
+
+	 var nfcSouthTeam1 = "Falcons";
+	 var nfcSouthTeam2 = "Saints";
+
+	 var nfcSouthTeam = ["Falcons", "Saints", "Panthers"]
+
+
+	 // Any data type can go in any position:
+	 // - booleans
+	 // - numbers
+	 // - strings
+	 // - objects 
+	 // - arrays
+
+	 // In an array, the first element will be 0 (not 1).
+
+	 console.log(students);
+	 console.log(students[3]);
+	 students[14] = "Drew";
+
+	 // // cool things you can do to an array (methods)
+	 // students.pop(); // this will remove the last element on the array
+	 // students.push("Alex"); // this will add something on the end of the array
+	 // animals.unshift("cow"); // put cow on front of array and shift everything right
+	 // animals.shift(); // take the first element off the array and shift everything left
+	 // animals.splice(2, 1, "horse"); // both adds and subtracts things
+	 // animals.slice(); //returns elements in array as a new object (in a new var)
+
+	 // make an array with at least four students in class. 
+	 var students = ["Alex", "Paige", "David", "Brett", "JT", "Shirlette", "Summer"];
+	 // prompt the user for their name
+	 var name = prompt("What is your name?", "Name");
+	 // // if they enter a name in the array, then alert them, You are in the class!
+	 // if(name == students[1]){
+	 // 	console.log("You are in the class!");
+	 // // else ask them if they want to join.
+	 // }else{
+	 // 	console.log("Do you want to join us?");
+
+	 if(students.indexOf(name) > -1){
+	 	console.log("you are in the class");
+	 }else{
+	 	console.log("would you like to join?");
+	 }
+
+// LOOPS	
+	for(var i = 0; i < students.length; i++){
+		console.log(students[i]);
+	} 
+
+	var dcTeam = ["Rob", "Max", "Jake", "Natalie", "Toby", "Keith"];
+	for(i=0; i < dcTeam.length; i++){
+		if(name == dcTeam[i]){
+			console.log("You work for Digital Crafts");
+			break;
+		}
+	}
+
+	// strings are just arrays... of characters.
+	// if you need to manipulate a string, you can treat it with all the array's stuff. You can still use length, indexof, etc.
+
+	// Given a number between 0 and 6 representing the days of the week, print "Go to work." if it's a work day and "Sleep in." if it's a weekend day.
+	var day = new Day();
+
+	if((day =>1) || (day <= 6)){
+		console.log("Go to work");
+	}else{
+		console.log("Sleep in");
+	}
+
+
+	// Given a month number, between 1 and 12, and a year, print the number of days in that month - accounting for leap years.
+
+
+	// Given the amount of a bill as a number, and a level of service - which can be "good", "fair", or "bad", print the total bill with the tip included. The amount of tip given for each level of service is defined by:
+
+	// [3:29]  
+	// "good" -> 20%
+	// "fail" -> 15%
+	// "bad"  -> 10%
+	 
+
+</script>
