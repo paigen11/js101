@@ -11,18 +11,18 @@
 	<div id="main1">	
 		<h1>Fight the Dragon</h1>
 		<div id="dragon">
-			<img name="scary_dragon" src="dice/dragon.png">
+			<img name="scary_dragon" src="dice/new_dragon.png">
 		</div>
 		
 		<p>Do you choose to...</p>
-		<input type="button" onclick="fightDragon()" value="Fight">
-		<input type="button" onclick="fleeDragon()" value="Flee">
+		<input class="button" type="button" onclick="fightDragon()" value="Fight">
+		<input class="button" type="button" onclick="fleeDragon()" value="Flee">
 	</div>	
 
 	<div id="main2">
 		<h2>Dragon's Roll</h2>
-		<img name="die3" src="dice/d1.gif">
-		<img name="die4" src="dice/d1.gif">
+		<img name="die3" src="dice/new_die1.png">
+		<img name="die4" src="dice/new_die1.png">
 
 		<div class="health">
 			<h3>HP:</h3>
@@ -30,16 +30,17 @@
 		</div>			
 
 		<h2>Your Roll</h2>
-		<img name="die1" src="dice/d1.gif">
-		<img name="die2" src="dice/d1.gif">
+		<img name="die1" src="dice/new_die1.png">
+		<img name="die2" src="dice/new_die1.png">
 
 		<div class="health">
 			<h3>HP:</h3>
 			<div id="yourHP">20</div>
 		</div>	
 
-		<div id="button">
-			<input type="button" onclick="combat();" value="Fight!">
+		<div id="buttons">
+			<input class="button" type="button" onclick="rollDice();" value="Fight!">
+			<input class="button" type="button" onclick="specialCombat();" value="Fight bravely!">
 		</div>	
 	</div>	
 </div>
@@ -59,6 +60,27 @@
 		document.getElementById("dragon").innerHTML = '<img src="dice/loser.png" />';
 		
 	}
+
+	// function rollDice(){
+
+	// 	var randomDie1 = Math.floor(Math.random() * 6)+1
+	// 	var randomDie2 = Math.floor(Math.random() * 6)+1
+
+	// 	// console.log(randomDie1);
+	// 	// console.log(randomDie2);
+	// 	// console.dir(document.images);
+
+	// 	document.images.die1.src = 'dice/d' + randomDie1 + '.gif';
+	// 	document.images.die2.src = 'dice/d' + randomDie2 + '.gif';
+
+	// 	var sum = Number(randomDie1) + Number(randomDie2);
+	// 	if(sum > 9){
+	// 		alert("Great job! You scored a direct hit with that roll of " + sum);
+	// 	}else if(sum < 9){
+	// 		alert("Ooh! Too bad, you got burned to a crips because you only rolled " + sum);
+	// 	}
+	// }
+
 	var damageTakenUser = 0;
 	var damageTakenDragon = 0;
 	var yourHP = 20;
@@ -69,45 +91,88 @@
 		var randomDie1 = Math.floor(Math.random() * 6)+1
 		var randomDie2 = Math.floor(Math.random() * 6)+1
 
+		var randomDie3 = Math.floor(Math.random() * 6)+1
+		var randomDie4 = Math.floor(Math.random() * 6)+1
+
+		var yourTotal = Number(randomDie1 + randomDie2);
+		var dragonTotal = Number(randomDie3 + randomDie4);
 		// console.log(randomDie1);
 		// console.log(randomDie2);
 		// console.dir(document.images);
 
-		document.images.die1.src = 'dice/d' + randomDie1 + '.gif';
-		document.images.die2.src = 'dice/d' + randomDie2 + '.gif';
+		document.images.die1.src = 'dice/new_die' + randomDie1 + '.png';
+		document.images.die2.src = 'dice/new_die' + randomDie2 + '.png';
+		document.images.die3.src = 'dice/new_die' + randomDie3 + '.png';
+		document.images.die4.src = 'dice/new_die' + randomDie4 + '.png';
 
-		damageTakenUser = Number(randomDie1) + Number(randomDie2);
+		if(yourTotal >= 9 && dragonTotal >= 9){
+			alert("Congrats! You scored a direct hit, but you also got singed by the dragon!");
+			subtractdragonHPdragonHP(4);
+			subtractyourHP(4);
+		}else if(dragonTotal >= yourTotal && dragonTotal >= 9) {
+			alert("Watch out, you're gonna get roasted like a marshmallow!");
+			subtractyourHP(4);
+		}else if(yourTotal >= dragonTotal && yourTotal >= 9){
+			alert("Nice job! You successfully hit the drgaon and missed its angry flames!");
+			subtractdragonHP(4);
+		}else if(yourTotal === dragonTotal){
+			alert("Your attacks were equally matched this round! No damage done.");
+		}else{
+			alert("You both missed?! Come on - get your head in the game!")
+	}
 
-		dragonHP -= damageTakenUser;
-
-
-	function rollDiceDragon(){
-
+	function specialCombat() {
 		var randomDie1 = Math.floor(Math.random() * 6)+1
 		var randomDie2 = Math.floor(Math.random() * 6)+1
 
-		// console.log(randomDie1);
-		// console.log(randomDie2);
-		// console.dir(document.images);
+		var randomDie3 = Math.floor(Math.random() * 6)+1
+		var randomDie4 = Math.floor(Math.random() * 6)+1
 
-		document.images.die3.src = 'dice/d' + randomDie1 + '.gif';
-		document.images.die4.src = 'dice/d' + randomDie2 + '.gif';
+		var yourTotal = Number(randomDie1 + randomDie2);
+		var dragonTotal = Number(randomDie3 + randomDie4);
 
-		damageTakenDragon = randomDie1 + randomDie2;
+		document.images.die1.src = 'dice/new_die' + randomDie1 + '.png';
+		document.images.die2.src = 'dice/new_die' + randomDie2 + '.png';
+		document.images.die3.src = 'dice/new_die' + randomDie3 + '.png';
+		document.images.die4.src = 'dice/new_die' + randomDie4 + '.png';
 
-		yourHP -= damageTakenDragon;
+		if (Number(yourTotal) >= 9) {
+			alert("Way to go! Your hit was twice as powerful as usual!");
+			subtractdragonHP(8);
+		}else if(Number(dragonTotal) >= 9) {
+			alert("Is it hot in here or is it just you? That flame's really strong this time!");
+			subtractyourHP(8);
+		}
 	}
 
-	function health() {
-		document.getElementById("yourHP").innerHTML = yourHP.toString();
-		document.getElementById("dragonHP").innerHTML = dragonHP.toString();
-	}
+	 function subtractyourHP(n){
+        var health1 = document.getElementById("heroHP").value;
+        var newHealth1 = parseInt(health1) - n;
+        if(newHealth1 > 20){
+            newHealth1 = 20;
+        }
+        while(newHealth1 >= 0){
+            document.getElementById("heroHP").value = newHealth1;
+            return newHealth1;
+        }
+        alert("YOU HAVE DIED!!");
+    }
+    function subtractdragonHP(n){
+        var health2 = document.getElementById("dragonHP").value;
+        var newHealth2 = parseInt(health2) - n;
+        while(newHealth2 >= 0){
+            document.getElementById("dragonHP").value = newHealth2;
+            return newHealth2;
+        }
+            alert("YOU HAVE SLAYED THE DRAGON!!");
+    }
 
-	function combat() {
-		rollDice();
-		rollDiceDragon();
-		health();
-	}
+    function combat(){
+    	rollDice()    	
+    	specialCombat()
+    	subtractyourHP()
+    	subtractdragonHP()
+    }
 
 </script>
 

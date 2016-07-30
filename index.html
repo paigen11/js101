@@ -226,25 +226,58 @@ if(userInputAsANumber === randomNumber){
 	// strings are just arrays... of characters.
 	// if you need to manipulate a string, you can treat it with all the array's stuff. You can still use length, indexof, etc.
 
-	// Given a number between 0 and 6 representing the days of the week, print "Go to work." if it's a work day and "Sleep in." if it's a weekend day.
-	var day = new Day();
+	var plan1Name="Basic";
+	var plan1Price= 3.99;
+	var plan1Space = 100;
 
-	if((day =>1) || (day <= 6)){
-		console.log("Go to work");
-	}else{
-		console.log("Sleep in");
+	// var plan1 = ["Basic", 3.99, 100];
+	var plan1 = {};
+	plan1.name = "Basic";
+	plan1.price = 3.99;
+	plan1.space = 100;
+	plan1.array = [1, 1, 2, 3, 5];
+
+	var plan2 = {
+		name: "Professional",
+		price: 5.99,
+		space: 500
 	}
 
+	var variablePropertyName = "name";
 
-	// Given a month number, between 1 and 12, and a year, print the number of days in that month - accounting for leap years.
+	plan2.name = "Professional"; //dot notation - can't do variable notations here
+	plan2['name'] = "Professional"; //bracket notation - can do variable properties here 
+	plan2[variablePropertyName] = "Professional"; //same
+	plan2.variablePropertyName = "Doesn't matter"; // this is something entirely different
 
+	console.log(plan2.name); // Professional
+	console.log(plan1.space); // 100
+	
+	plan1.calcAnnual = function(percent) {
+		console.log(percent / 12 / 100);
+	}
+	plan1.calcAnnual(50); // 0.04167
 
-	// Given the amount of a bill as a number, and a level of service - which can be "good", "fair", or "bad", print the total bill with the tip included. The amount of tip given for each level of service is defined by:
+	var students = [
+		{
+			name: "Alex",
+			hometown: "Seoul"
+		}, // these are objects
+		{
+			name: "Paige",
+			hometown: "Saint Louis",
+			musicGenre: "Soca"
+		},
+		{name: "David"},
+		{name: "Brett"}
+		, "JT", "Shirlette", "Summer", "Danny", "Drew", "Daniel", "Wes"]; // these are not
 
-	// [3:29]  
-	// "good" -> 20%
-	// "fail" -> 15%
-	// "bad"  -> 10%
-	 
+	console.log(students[0]); // gets all properties for object
+	console.log(students[1].hometown); // gets just hometown property for Paige
+
+	for(var i = 0; i < students.length; i++){
+		console.log(students[i].name);
+	} //prints off names for all objects in students that have the 'name' property 
+	
 
 </script>

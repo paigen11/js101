@@ -1,0 +1,98 @@
+<!-- Closures -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<script type="text/javascript">
+	var a = 1; //a is declared. And this line cannot be run again no matter how bad you want it to.
+
+	addEventListener('keydown', function(event){
+		// Javascript remembers that a was declared up above. 
+		// Javascript keeps it available/alive because it's still in the scope of the listener, i.e. it's still needed.
+		// The keydown function can see, use and manipulate a.
+		a++;
+		alert(a);
+	});
+
+	function newFunction(){
+		a = 3;
+		b = 2;
+	}
+
+	console.log(a); // 1
+	newFunction();
+	console.log(a); // 3
+
+	var x = 1;
+	var y = 1;
+	function acdc(){
+		x = 2; // update window.x, the global x to 2
+		var y = 3; // does NOT update global y, it creates a new variable that is entirely local to this function and will cease to exist when the function is done.
+		console.log(y);
+	}
+	console.log(y);
+
+	var counter = 0;
+	function sum(){
+		counter++; //changing the global variable
+	}
+	// counter = 0 because nothing's happened to it yet
+	sum(); // 1
+	sum(); // 2
+	sum(); // 3
+
+	function stupid(){
+		counter = "Hello";
+	}
+
+	stupid(); // Counter = "Hello"
+	sum(); // Counter = "NaN" because "Hello"++ is nonsense (stupid's counter replaced global var counter from 0 to "hello")
+
+	function protect(){
+		var counter = 0;
+		counter++;
+		return counter;
+	}
+
+	protect(); // each time counter comes back to 0, so the result is 1
+	protect();
+	protect();
+
+	function addNew(){
+		var counter = 0; // set the local variable "counter" to 0
+		function plus(){ // new child function of addNew, which is a grandchild function of window. It has access to its parents "stuff" and its grandparents' stuff.
+			counter++; // without 'var' in front of counter, it will look up until it finds a variable with the same name AND the word var.
+		}
+		plus() // call plus and run the child function, which can update the local variable
+		return counter;
+	}
+
+	var add = (function (){
+		var counter = 0;
+		return function(){
+			return counter++; //a child element can see its parent variable / function, etc. a parent element cannot see its child's stuff. Don't name global vars the same as local vars. Don't make global variables when you can avoid
+		}
+	})();
+
+	add;
+	add;
+
+	 var x = 3; // global x
+	 function a(){ 
+	 	var x; //x is declared but undefined
+	 	console.log(x); //I want to print global x -- sorry, x is undefined. You can't print the global like this
+	 	var x = 2; // I want to make a new local called x
+	 	console.log(x); //I want to print local x
+	 }
+	 console.log(x);
+	 a();
+
+</script>	
+
+</head>
+<body>
+
+</body>
+</html>
